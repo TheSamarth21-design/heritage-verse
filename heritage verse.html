@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Verse - Bridging Tradition with Technology</title>
+    <meta name="description" content="QR-powered animated storytelling to preserve and promote India's heritage.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #d97706; /* Amber-600 */
+            --secondary: #1f2937; /* Gray-800 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Cinzel', serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593693407604-342416f46991?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-gray-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-amber-700 brand-font flex items-center gap-2">
+                        <i data-lucide="scroll" class="h-8 w-8"></i>
+                        Heritage Verse
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-amber-600 font-medium transition">About</a>
+                    <a href="#experience" class="text-gray-700 hover:text-amber-600 font-medium transition">Experience</a>
+                    <a href="#features" class="text-gray-700 hover:text-amber-600 font-medium transition">Features</a>
+                    <a href="#contact" class="px-4 py-2 rounded-full bg-amber-600 text-white hover:bg-amber-700 transition">Get In Touch</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-amber-600 focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-stone-50">About</a>
+            <a href="#experience" class="block px-4 py-3 text-gray-700 hover:bg-stone-50">Experience</a>
+            <a href="#features" class="block px-4 py-3 text-gray-700 hover:bg-stone-50">Features</a>
+            <a href="#contact" class="block px-4 py-3 text-amber-600 font-bold">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center hero-bg text-white px-4">
+        <div class="text-center max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-amber-600/80 text-sm font-semibold tracking-wide mb-4 backdrop-blur-sm">PRESERVING HISTORY</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Bridging Tradition with Technology</h1>
+            <p class="text-xl md:text-2xl text-stone-200 mb-10 font-light max-w-2xl mx-auto">
+                QR-powered animated storytelling to preserve and promote India's heritage. Explore the untold stories of our past.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#experience" class="px-8 py-4 bg-amber-600 hover:bg-amber-700 rounded-lg text-lg font-semibold transition flex items-center justify-center gap-2">
+                    <i data-lucide="play-circle"></i> Start Experience
+                </a>
+                <a href="#about" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-lg text-lg font-semibold transition border border-white/30">
+                    Learn More
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="h-8 w-8 text-white/70"></i>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Heritage Verse</h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto rounded"></div>
+                <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                    A digital storytelling platform revolutionizing how we experience and preserve cultural heritage.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100 shadow-sm">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="p-3 bg-red-100 rounded-lg text-red-600 shrink-0">
+                            <i data-lucide="alert-circle" class="h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">The Problem</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Visitors at heritage sites often face outdated signboards, a lack of knowledgeable guides, and language barriers. This prevents a true appreciation of the rich history surrounding them.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-green-100 rounded-lg text-green-600 shrink-0">
+                            <i data-lucide="check-circle-2" class="h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Our Solution</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                We place QR codes that instantly open interactive animated videos. Our multilingual storytelling works online and offline, making heritage accessible to everyone, everywhere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative h-80 md:h-full rounded-2xl overflow-hidden shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1562955549-0664e12e1399?q=80&w=2070&auto=format&fit=crop" alt="Indian Heritage Site" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+                        <p class="text-white font-medium">Making history accessible for the next generation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (VIDEOS) -->
+    <section id="experience" class="py-20 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-amber-600 font-bold tracking-wider uppercase text-sm">Watch The Stories</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Experience Shivneri Fort</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Immerse yourself in the birthplace of Chhatrapati Shivaji Maharaj. Select your preferred language to begin the journey.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- English Card -->
+                <a href="https://drive.google.com/file/d/1Qe-Rv60K-FPQhSq1naBzdS-c5pwTQFcH/view?usp=drive_link" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-200 transition duration-300 card-hover group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1629219369075-84949dc49688?q=80&w=2070&auto=format&fit=crop" alt="Shivneri Fort English" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition">
+                                <i data-lucide="play" class="h-8 w-8 text-amber-600 fill-current"></i>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded">ENGLISH</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Shivneri Fort</h3>
+                        <p class="text-gray-500 text-sm">Discover the strategic military architecture and birth story of the legend in English.</p>
+                    </div>
+                </a>
+
+                <!-- Marathi Card -->
+                <a href="https://drive.google.com/file/d/1Zaf9zeL3qRRr_LZRBFEfZPTzD33p3Bog/view?usp=sharing" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-200 transition duration-300 card-hover group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596546377317-268e612f912e?q=80&w=2070&auto=format&fit=crop" alt="Shivneri Fort Marathi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition">
+                                <i data-lucide="play" class="h-8 w-8 text-amber-600 fill-current"></i>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded">MARATHI</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">शिवनेरी किल्ला</h3>
+                        <p class="text-gray-500 text-sm">छत्रपती शिवाजी महाराजांच्या जन्मस्थळाचा आणि किल्ल्याचा इतिहास मराठीत अनुभवा.</p>
+                    </div>
+                </a>
+
+                <!-- Hindi Card -->
+                <a href="https://drive.google.com/file/d/1QV5TvT1BjW_gV09rLTWTtP2hAamqGIvN/view?usp=sharing" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-200 transition duration-300 card-hover group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1643194569837-5658097b3992?q=80&w=2070&auto=format&fit=crop" alt="Shivneri Fort Hindi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition">
+                                <i data-lucide="play" class="h-8 w-8 text-amber-600 fill-current"></i>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded">HINDI</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">शिवनेरी किला</h3>
+                        <p class="text-gray-500 text-sm">शिवनेरी किले की वास्तुकला और इतिहास को हिंदी भाषा में जानें और समझें।</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Innovation & Features</h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="qr-code" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">QR + Animation</h3>
+                    <p class="text-gray-600 text-sm">Instant access to rich, animated narratives that bring history to life simply by scanning.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="languages" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Multilingual Support</h3>
+                    <p class="text-gray-600 text-sm">Stories available in English, Hindi, Marathi, and scalable to more regional languages.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="wifi-off" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Offline Capability</h3>
+                    <p class="text-gray-600 text-sm">Designed to work in remote locations without active internet connections.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="maximize" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Scalable Platform</h3>
+                    <p class="text-gray-600 text-sm">Ready to expand to 3,600+ heritage sites across India with a unified system.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="glasses" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">AR/VR Ready</h3>
+                    <p class="text-gray-600 text-sm">Future-ready architecture for immersive augmented and virtual reality experiences.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="p-6 rounded-xl border border-stone-100 hover:shadow-lg transition bg-stone-50">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="bot" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">AI Tour Guides</h3>
+                    <p class="text-gray-600 text-sm">Intelligent virtual guides powered by artificial intelligence to answer visitor queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact & Stats -->
+    <section class="py-20 bg-amber-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">3600+</div>
+                    <div class="text-amber-200">Potential Sites</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">3</div>
+                    <div class="text-amber-200">Languages</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">100%</div>
+                    <div class="text-amber-200">Digital</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">24/7</div>
+                    <div class="text-amber-200">Accessibility</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="py-20 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Research & References</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="https://asi.nic.in" target="_blank" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border border-stone-200">
+                    <h4 class="font-bold text-lg mb-2 text-amber-700">Archaeological Survey of India</h4>
+                    <p class="text-gray-600 text-sm">Aligned with World Heritage Sites and conservation guidelines.</p>
+                </a>
+                <a href="https://whc.unesco.org" target="_blank" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border border-stone-200">
+                    <h4 class="font-bold text-lg mb-2 text-amber-700">UNESCO Heritage Dive</h4>
+                    <p class="text-gray-600 text-sm">Following international heritage preservation and digital standards.</p>
+                </a>
+                <a href="https://tourism.gov.in" target="_blank" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border border-stone-200">
+                    <h4 class="font-bold text-lg mb-2 text-amber-700">National Digital Tourism Mission</h4>
+                    <p class="text-gray-600 text-sm">Smart Tourism Framework compliant technology.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold brand-font mb-4 text-amber-500">Heritage Verse</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Connecting the past with the future through innovative digital storytelling. Join us in preserving India's legacy.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#about" class="hover:text-amber-500 transition">About Us</a></li>
+                        <li><a href="#experience" class="hover:text-amber-500 transition">Experience</a></li>
+                        <li><a href="#features" class="hover:text-amber-500 transition">Features</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Get In Touch</h4>
+                    <div class="flex items-center gap-3 mb-3 text-gray-400">
+                        <i data-lucide="mail" class="h-5 w-5 text-amber-500"></i>
+                        <a href="mailto:heritageverse1409@gmail.com" class="hover:text-white transition">heritageverse1409@gmail.com</a>
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-400">
+                        <i data-lucide="instagram" class="h-5 w-5 text-amber-500"></i>
+                        <a href="https://instagram.com/heritageverse1409" target="_blank" class="hover:text-white transition">@heritageverse1409</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Heritage Verse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
