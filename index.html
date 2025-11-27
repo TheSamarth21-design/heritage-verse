@@ -8,23 +8,6 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        darkMode: 'class', // This enables manual toggling
-        theme: {
-            extend: {
-                colors: {
-                    primary: '#d97706',
-                    secondary: '#1f2937',
-                },
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                    serif: ['Cinzel', 'serif'],
-                }
-            }
-        }
-    }
-</script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -54,20 +37,11 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
     </style>
-    <script>
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-</script>
 </head>
-<body class="bg-stone-50 text-gray-800 dark:bg-gray-900 dark:text-stone-200 antialiased transition-colors duration-300">
+<body class="bg-stone-50 text-gray-800 antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-stone-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
-    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-amber-600 ...">About</a>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
@@ -77,10 +51,6 @@
                     </a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-2">
-    <i id="theme-toggle-dark-icon" data-lucide="moon" class="hidden w-5 h-5"></i>
-    <i id="theme-toggle-light-icon" data-lucide="sun" class="hidden w-5 h-5"></i>
-</button>
                     <a href="#about" class="text-gray-700 hover:text-amber-600 font-medium transition">About</a>
                     <a href="#experience" class="text-gray-700 hover:text-amber-600 font-medium transition">Experience</a>
                     <a href="#features" class="text-gray-700 hover:text-amber-600 font-medium transition">Features</a>
@@ -129,7 +99,7 @@
     </header>
 
     <!-- About Section -->
-   <section id="features" class="py-20 bg-stone-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Heritage Verse</h2>
@@ -198,7 +168,7 @@
     </section>
 
     <!-- Experience Section (VIDEOS) -->
-  <section id="features" class="py-20 bg-stone-50 dark:bg-gray-900 transition-colors duration-300">
+   <section id="experience" class="py-20 bg-stone-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center mb-16">
@@ -208,10 +178,10 @@
         </div>
 
         <div class="mb-16">
-           <div class="bg-white dark:bg-gray-800 rounded-2xl border border-stone-200 dark:border-gray-700 shadow-lg ...">
-    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">...</h3>
-    <p class="text-gray-600 dark:text-gray-400 mb-4">...</p>
-</div>
+            <div class="flex items-center gap-4 mb-6 border-b border-gray-200 pb-4">
+                <div class="w-2 h-8 bg-amber-600 rounded-full"></div>
+                <h3 class="text-2xl font-bold text-gray-800">Shivneri Fort</h3>
+            </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -462,12 +432,12 @@
     }
 </script>
    <!-- Features Section -->
-   <section id="features" class="py-20 bg-stone-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="features" class="py-20 bg-stone-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl border border-stone-200 dark:border-gray-700 shadow-lg ...">
-    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">...</h3>
-    <p class="text-gray-600 dark:text-gray-400 mb-4">...</p>
-</div>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Innovation & Features</h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto rounded"></div>
+            </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
@@ -547,7 +517,7 @@
     </section>
 
     <!-- Research Section -->
-    <section id="features" class="py-20 bg-stone-50 dark:bg-gray-900 transition-colors duration-300">
+    <section class="py-20 bg-stone-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Research & References</h2>
             <div class="grid md:grid-cols-3 gap-6">
@@ -724,50 +694,9 @@
                 }
             });
         });
-        // Theme Toggle Logic
-    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    // Change the icons inside the button based on previous settings
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        themeToggleLightIcon.classList.remove('hidden');
-    } else {
-        themeToggleDarkIcon.classList.remove('hidden');
-    }
-
-    var themeToggleBtn = document.getElementById('theme-toggle');
-
-    themeToggleBtn.addEventListener('click', function() {
-        // Toggle icons inside button
-        themeToggleDarkIcon.classList.toggle('hidden');
-        themeToggleLightIcon.classList.toggle('hidden');
-
-        // If is set via local storage
-        if (localStorage.getItem('color-theme')) {
-            if (localStorage.getItem('color-theme') === 'light') {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            }
-        // If NOT set via local storage previously (uses system preference)
-        } else {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        }
-    });
     </script>
 </body>
 </html>
-
-
-
 
 
 
