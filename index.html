@@ -272,31 +272,43 @@
             </div>
         </div>
 </section>
-   <section id="quiz" class="py-20 bg-amber-600 text-white">
+  <section id="quiz" class="py-20 bg-amber-600 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-8 brand-font">Test Your Knowledge</h2>
         
         <div class="bg-white text-gray-800 rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto relative overflow-hidden min-h-[400px] flex flex-col justify-center">
             
-            <div id="quiz-question-box">
+            <div id="quiz-screen">
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
+                    <div id="progress-bar" class="bg-amber-600 h-2.5 rounded-full" style="width: 33%"></div>
+                </div>
+
                 <div class="mb-6">
-                    <span id="question-count" class="text-amber-600 font-bold uppercase text-sm tracking-widest">Question 1 of 3</span>
-                    <h3 id="question-text" class="text-2xl font-bold mt-2">Loading question...</h3>
+                    <span id="question-count" class="text-amber-600 font-bold uppercase text-sm tracking-widest">Question 1</span>
+                    <h3 id="question-text" class="text-2xl font-bold mt-2">Loading...</h3>
                 </div>
                 
                 <div id="options-container" class="space-y-3">
                     </div>
+
+                <div id="next-btn-container" class="mt-6 hidden border-t border-gray-100 pt-4">
+                    <button onclick="nextQuestion()" class="px-8 py-3 bg-gray-900 text-white font-bold rounded-lg hover:bg-gray-800 transition flex items-center justify-center mx-auto gap-2">
+                        Next Question <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
             </div>
 
-            <div id="quiz-finish" class="hidden text-center">
-                <div class="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 animate-bounce">
+            <div id="result-screen" class="hidden text-center">
+                <div class="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="trophy" class="h-10 w-10 text-green-600"></i>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900">Quiz Completed!</h3>
-                <p class="text-gray-600 mt-2">You are a true heritage expert.</p>
-                <button onclick="restartQuiz()" class="mt-6 px-8 py-3 bg-amber-600 text-white font-bold rounded-full hover:bg-amber-700 transition shadow-lg">
-                    Play Again
-                </button>
+                <p class="text-gray-600 mt-2">You are a Heritage Expert!</p>
+                <div class="mt-6">
+                    <button onclick="restartQuiz()" class="px-6 py-2 border-2 border-amber-600 text-amber-600 font-bold rounded-full hover:bg-amber-50 transition">
+                        Play Again
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -304,29 +316,31 @@
 </section>
 
 <script>
-    // --- CONFIGURATION: ADD YOUR QUESTIONS HERE ---
+    // 1. SETUP THE QUESTIONS
     const quizData = [
         {
             question: "Where was Chhatrapati Shivaji Maharaj born?",
             options: ["Raigad Fort", "Shivneri Fort", "Torna Fort", "Sinhagad Fort"],
-            correct: 1 // Index 1 means "Shivneri Fort" (0, 1, 2, 3)
+            correct: 1 // 0=Raigad, 1=Shivneri, etc.
         },
         {
             question: "Which famous Zoo is located in Katraj, Pune?",
             options: ["Jijamata Udyan", "Mysore Zoo", "Rajiv Gandhi Zoological Park", "Sanjay Gandhi National Park"],
-            correct: 2 // Index 2 means "Rajiv Gandhi..."
+            correct: 2 
         },
         {
-            question: "What technology does Heritage Verse use to show videos?",
+            question: "What technology does Heritage Verse use?",
             options: ["Bluetooth", "NFC Tags", "QR Codes", "Barcodes"],
-            correct: 2 // Index 2 means "QR Codes"
+            correct: 2 
         }
     ];
 
     let currentQuestionIndex = 0;
 
-    // Initialize the quiz when page loads
-    document.addEventListener('DOMContentLoaded', loadQuestion);
+    // Load first question on page start
+    document.addEventListener('DOMContentLoaded', () => {
+        loadQuestion();
+    });
 
     function loadQuestion() {
         const currentData = quizData[currentQuestionIndex];
@@ -335,111 +349,86 @@
         document.getElementById('question-count').innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
         document.getElementById('question-text').innerText = currentData.question;
         
-        // Clear old buttons
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = '';
+        // Update Progress Bar
+        const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
+        document.getElementById('progress-bar').style.width = `${progress}%`;
 
-        // Create new buttons
+        // Hide Next Button
+        document.getElementById('next-btn-container').classList.add('hidden');
+
+        // Clear and Rebuild Options
+        const container = document.getElementById('options-container');
+        container.innerHTML = ''; // Wipe old buttons
+
         currentData.options.forEach((option, index) => {
             const btn = document.createElement('button');
             btn.className = "w-full text-left p-4 rounded-xl border-2 border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium text-gray-700";
             btn.innerText = option;
             btn.onclick = () => checkAnswer(btn, index);
-            optionsContainer.appendChild(btn);
+            container.appendChild(btn);
         });
+
+        // Re-initialize icons just in case
+        if(typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    function checkAnswer(selectedBtn, selectedIndex) {
+    function checkAnswer(btn, selectedIndex) {
         const correctIndex = quizData[currentQuestionIndex].correct;
-        const allBtns = document.querySelectorAll('#options-container button');
+        const allBtns = document.getElementById('options-container').children;
 
-        // Disable all buttons to prevent double clicking
-        allBtns.forEach(btn => btn.classList.add('pointer-events-none'));
+        // Disable all buttons so user can't click again
+        for (let b of allBtns) {
+            b.classList.add('pointer-events-none'); 
+        }
 
         if (selectedIndex === correctIndex) {
-            // CORRECT ANSWER
-            selectedBtn.classList.remove('border-stone-200', 'hover:border-amber-500', 'text-gray-700');
-            selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700', 'font-bold');
+            // Correct!
+            btn.classList.remove('border-stone-200', 'text-gray-700');
+            btn.classList.add('bg-green-100', 'border-green-500', 'text-green-700', 'font-bold');
             
-            // Wait 1 second, then go to next question
-            setTimeout(() => {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < quizData.length) {
-                    loadQuestion();
-                } else {
-                    showFinalScreen();
-                }
-            }, 1000);
-
+            // Show Next Button
+            document.getElementById('next-btn-container').classList.remove('hidden');
         } else {
-            // WRONG ANSWER
-            selectedBtn.classList.remove('border-stone-200');
-            selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
-            const originalText = selectedBtn.innerText;
-            selectedBtn.innerText = originalText + " ❌ Try Again";
-
-            // Reset button after 1.5 seconds
+            // Wrong!
+            btn.classList.remove('border-stone-200');
+            btn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+            btn.innerHTML += ' <span class="float-right">❌</span>';
+            
+            // Allow them to try again after 1 second? 
+            // Or force them to restart? Let's just let them try again for now.
             setTimeout(() => {
-                selectedBtn.classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
-                selectedBtn.classList.add('border-stone-200');
-                selectedBtn.innerText = originalText;
+                btn.classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
+                btn.classList.add('border-stone-200');
+                btn.innerText = quizData[currentQuestionIndex].options[selectedIndex]; // Reset text
                 
                 // Re-enable buttons
-                allBtns.forEach(btn => btn.classList.remove('pointer-events-none'));
-            }, 1500);
+                for (let b of allBtns) {
+                    b.classList.remove('pointer-events-none');
+                }
+            }, 1000);
         }
     }
 
-    function showFinalScreen() {
-        document.getElementById('quiz-question-box').classList.add('hidden');
-        document.getElementById('quiz-finish').classList.remove('hidden');
-        // Re-initialize icons just in case
-        if(typeof lucide !== 'undefined') lucide.createIcons(); 
+    function nextQuestion() {
+        currentQuestionIndex++;
+        
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.remove('hidden');
     }
 
     function restartQuiz() {
         currentQuestionIndex = 0;
-        document.getElementById('quiz-finish').classList.add('hidden');
-        document.getElementById('quiz-question-box').classList.remove('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
         loadQuestion();
-    }
-</script>
-
-<script>
-    function checkAnswer(btn, isCorrect) {
-        const allBtns = btn.parentElement.querySelectorAll('button');
-        
-        // Disable all buttons
-        allBtns.forEach(b => b.classList.add('pointer-events-none', 'opacity-50'));
-
-        if (isCorrect) {
-            btn.classList.remove('border-stone-200', 'hover:border-amber-500');
-            btn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
-            setTimeout(() => {
-                document.getElementById('quiz-container').classList.add('hidden');
-                document.getElementById('quiz-success').classList.remove('hidden');
-            }, 1000);
-        } else {
-            btn.classList.remove('border-stone-200');
-            btn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
-            btn.innerText += " ❌ (Try Again)";
-            setTimeout(() => {
-                allBtns.forEach(b => b.classList.remove('pointer-events-none', 'opacity-50'));
-                btn.classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
-                btn.classList.add('border-stone-200');
-                btn.innerText = btn.innerText.replace(" ❌ (Try Again)", "");
-            }, 1500);
-        }
-    }
-
-    function resetQuiz() {
-        document.getElementById('quiz-success').classList.add('hidden');
-        document.getElementById('quiz-container').classList.remove('hidden');
-        const btns = document.querySelectorAll('#quiz-container button');
-        btns.forEach(b => {
-            b.classList.remove('pointer-events-none', 'opacity-50', 'bg-green-100', 'border-green-500', 'text-green-700');
-            b.classList.add('border-stone-200');
-        });
     }
 </script>
    <!-- Features Section -->
@@ -708,6 +697,7 @@
     </script>
 </body>
 </html>
+
 
 
 
