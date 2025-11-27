@@ -142,6 +142,29 @@
                 </div>
             </div>
         </div>
+        <div class="max-w-3xl mx-auto py-12 px-4">
+    <h3 class="text-2xl font-bold text-center mb-10">Journey Through Time</h3>
+    <div class="border-l-4 border-amber-200 ml-4 space-y-8">
+        
+        <div class="relative pl-8">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-amber-600 rounded-full border-4 border-white shadow"></div>
+            <h4 class="font-bold text-lg text-gray-800">1630 AD</h4>
+            <p class="text-gray-600">Birth of Chhatrapati Shivaji Maharaj at Shivneri Fort.</p>
+        </div>
+
+        <div class="relative pl-8">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-amber-600 rounded-full border-4 border-white shadow"></div>
+            <h4 class="font-bold text-lg text-gray-800">1674 AD</h4>
+            <p class="text-gray-600">Coronation at Raigad (The Rise of Swarajya).</p>
+        </div>
+
+        <div class="relative pl-8">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-gray-400 rounded-full border-4 border-white shadow"></div>
+            <h4 class="font-bold text-lg text-gray-800">2025 AD</h4>
+            <p class="text-gray-600">Heritage Verse launches to preserve this legacy digitally.</p>
+        </div>
+    </div>
+</div>
     </section>
 
     <!-- Experience Section (VIDEOS) -->
@@ -249,6 +272,72 @@
             </div>
         </div>
 </section>
+    <section id="quiz" class="py-20 bg-amber-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-8 brand-font">Test Your Knowledge</h2>
+        
+        <div class="bg-white text-gray-800 rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto relative overflow-hidden">
+            <div id="quiz-container">
+                <div class="mb-6">
+                    <span class="text-amber-600 font-bold uppercase text-sm tracking-widest">Question 1 of 3</span>
+                    <h3 class="text-2xl font-bold mt-2">Where was Chhatrapati Shivaji Maharaj born?</h3>
+                </div>
+                <div class="space-y-3">
+                    <button onclick="checkAnswer(this, false)" class="w-full text-left p-4 rounded-xl border-2 border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium">Raigad Fort</button>
+                    <button onclick="checkAnswer(this, true)" class="w-full text-left p-4 rounded-xl border-2 border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium">Shivneri Fort</button>
+                    <button onclick="checkAnswer(this, false)" class="w-full text-left p-4 rounded-xl border-2 border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium">Torna Fort</button>
+                </div>
+            </div>
+
+            <div id="quiz-success" class="hidden text-center py-8">
+                <div class="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="trophy" class="h-10 w-10 text-green-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Correct Answer!</h3>
+                <p class="text-gray-600 mt-2">Shivneri Fort is the birthplace of the legend.</p>
+                <button onclick="resetQuiz()" class="mt-6 px-6 py-2 bg-amber-600 text-white rounded-full hover:bg-amber-700 transition">Try Again</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function checkAnswer(btn, isCorrect) {
+        const allBtns = btn.parentElement.querySelectorAll('button');
+        
+        // Disable all buttons
+        allBtns.forEach(b => b.classList.add('pointer-events-none', 'opacity-50'));
+
+        if (isCorrect) {
+            btn.classList.remove('border-stone-200', 'hover:border-amber-500');
+            btn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+            setTimeout(() => {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('quiz-success').classList.remove('hidden');
+            }, 1000);
+        } else {
+            btn.classList.remove('border-stone-200');
+            btn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+            btn.innerText += " ❌ (Try Again)";
+            setTimeout(() => {
+                allBtns.forEach(b => b.classList.remove('pointer-events-none', 'opacity-50'));
+                btn.classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
+                btn.classList.add('border-stone-200');
+                btn.innerText = btn.innerText.replace(" ❌ (Try Again)", "");
+            }, 1500);
+        }
+    }
+
+    function resetQuiz() {
+        document.getElementById('quiz-success').classList.add('hidden');
+        document.getElementById('quiz-container').classList.remove('hidden');
+        const btns = document.querySelectorAll('#quiz-container button');
+        btns.forEach(b => {
+            b.classList.remove('pointer-events-none', 'opacity-50', 'bg-green-100', 'border-green-500', 'text-green-700');
+            b.classList.add('border-stone-200');
+        });
+    }
+</script>
    <!-- Features Section -->
     <section id="features" class="py-20 bg-stone-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -515,6 +604,7 @@
     </script>
 </body>
 </html>
+
 
 
 
