@@ -656,9 +656,17 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Heritage Verse. All rights reserved.</p>
-            </div>
+            <div class="border-t border-gray-800 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+    
+    <p class="mb-4 md:mb-0">&copy; 2025 Heritage Verse. All rights reserved.</p>
+
+    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
+        <i data-lucide="users" class="h-4 w-4 text-amber-600"></i>
+        <span>Visitors:</span>
+        <span id="visitor-count" class="font-bold text-white tracking-widest">Loading...</span>
+    </div>
+
+</div>
         </div>
     </footer>
 
@@ -694,9 +702,33 @@
                 }
             });
         });
+        <script>
+    // VISITOR COUNTER SCRIPT
+    // This connects to a free API to count visits.
+    // It uses 'heritageverse' as the namespace. 
+    // If you want to reset it, change 'homepage' to 'homepage_v2'
+    
+    const countUrl = 'https://api.counterapi.com/v1/heritageverse/homepage/up';
+
+    fetch(countUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Update the HTML element with the new count
+            const countElement = document.getElementById('visitor-count');
+            if(countElement) {
+                countElement.innerText = data.count;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching visitor count:', error);
+            // Fallback text if API is down
+            document.getElementById('visitor-count').innerText = "1,000+"; 
+        });
+</script>
     </script>
 </body>
 </html>
+
 
 
 
