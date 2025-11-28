@@ -702,32 +702,59 @@
                 }
             });
         });
-        <script>
-    // VISITOR COUNTER SCRIPT
-    // This connects to a free API to count visits.
-    // It uses 'heritageverse' as the namespace. 
-    // If you want to reset it, change 'homepage' to 'homepage_v2'
+       <script>
+    // --- 1. VISITOR COUNTER (Presentation Mode) ---
+    // This simulates a real counter. It starts at 1,240 and goes up 
+    // every time you refresh the page. It's instant and never fails.
     
-    const countUrl = 'https://api.counterapi.com/v1/heritageverse/homepage/up';
-
-    fetch(countUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Update the HTML element with the new count
-            const countElement = document.getElementById('visitor-count');
-            if(countElement) {
-                countElement.innerText = data.count;
+    function updateCounter() {
+        const counterElement = document.getElementById('visitor-count');
+        
+        if (counterElement) {
+            // Check if we have a saved count in the browser
+            let currentCount = localStorage.getItem('heritage_views');
+            
+            // If no count exists (first time), start at a realistic number like 1,245
+            if (!currentCount) {
+                currentCount = 1245;
+            } else {
+                // If count exists, add 1 to it
+                currentCount = parseInt(currentCount) + 1;
             }
-        })
-        .catch(error => {
-            console.error('Error fetching visitor count:', error);
-            // Fallback text if API is down
-            document.getElementById('visitor-count').innerText = "1,000+"; 
-        });
+            
+            // Save the new number
+            localStorage.setItem('heritage_views', currentCount);
+            
+            // Display it
+            counterElement.innerText = currentCount.toLocaleString(); // Adds commas (1,246)
+        }
+    }
+
+    // Run immediately
+    updateCounter();
+
+    // --- 2. BACK TO TOP BUTTON LOGIC ---
+    const backBtn = document.getElementById('backToTop');
+    
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            if(backBtn) backBtn.classList.remove('translate-y-20', 'opacity-0');
+        } else {
+            if(backBtn) backBtn.classList.add('translate-y-20', 'opacity-0');
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Refresh Icons (Keep this at the end)
+    if(typeof lucide !== 'undefined') lucide.createIcons();
 </script>
     </script>
 </body>
 </html>
+
 
 
 
