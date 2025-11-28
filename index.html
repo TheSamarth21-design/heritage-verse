@@ -41,6 +41,18 @@
     </style>
 </head>
 <body class="bg-stone-50 text-gray-800 antialiased">
+    <div class="fixed top-0 left-0 h-1 bg-amber-600 z-[101] transition-all duration-150" id="scroll-progress" style="width: 0%"></div>
+    <div id="preloader" class="fixed inset-0 z-[100] bg-stone-50 flex items-center justify-center transition-opacity duration-500">
+    <div class="text-center">
+        <i data-lucide="scroll" class="h-16 w-16 text-amber-600 mx-auto animate-bounce mb-4"></i>
+        <h2 class="text-2xl font-bold brand-font text-gray-800 tracking-wider">HERITAGE VERSE</h2>
+        <div class="mt-4 flex justify-center gap-1">
+            <div class="w-2 h-2 bg-amber-600 rounded-full animate-pulse"></div>
+            <div class="w-2 h-2 bg-amber-600 rounded-full animate-pulse delay-75"></div>
+            <div class="w-2 h-2 bg-amber-600 rounded-full animate-pulse delay-150"></div>
+        </div>
+    </div>
+</div>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
@@ -753,9 +765,36 @@
     // Refresh Icons (Keep this at the end)
     if(typeof lucide !== 'undefined') lucide.createIcons();
 </script>
+       <script> // PRELOADER SCRIPT
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('preloader');
+        // Wait a tiny bit so the user actually sees your logo
+        setTimeout(() => {
+            loader.classList.add('opacity-0'); // Fade out
+            setTimeout(() => {
+                loader.style.display = 'none'; // Remove from layout
+            }, 500);
+        }, 800); 
+    });
+       </script>
+    </script>
+    <script>
+        // SCROLL PROGRESS BAR SCRIPT
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        const progressBar = document.getElementById("scroll-progress");
+        if(progressBar) {
+            progressBar.style.width = scrolled + "%";
+        }
+    });
+    </script>
     </script>
 </body>
 </html>
+
 
 
 
